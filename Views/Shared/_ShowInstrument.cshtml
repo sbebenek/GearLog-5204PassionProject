@@ -1,3 +1,35 @@
 ﻿@model _5204_PassionProject.Models.Instruments
 
-<p>Instrument: @Model.instrumentbrand @Model.instrumenttitle</p>
+
+<div class="container fade-in">
+    <div class="row">
+        <div class="col-lg-3">
+            <h4>@Model.instrumentbrand @Model.instrumenttitle</h4>
+            @if (Model.instrumentimage != "")
+            {
+                <img class="instrumentimage-ml" src="~/Content/Instruments/@Model.instrumentimage" />
+            }
+            else
+            {
+                <img class="instrumentimage-ml" src="~/Content/blank.png" />
+            }
+        </div>
+        <div class="col-lg-3">
+            <p><strong>Type: </strong>@Model.instrumenttype</p>
+            <p><strong>Strings: </strong>@Model.instrumentstrings</p>
+            <p><strong>Body: </strong>@Model.instrumentbody</p>
+            <p><strong>Neck: </strong>@Model.instrumentneck</p>
+            <p><strong>Fretboard: </strong>@Model.instrumentfretboard</p>
+
+        </div>
+        <div class="col-lg-3">
+            <p><strong>Bridge: </strong>@Model.instrumentbridge</p>
+            <p><strong>Neck Pickup: </strong>@Model.instrumentneckpu</p>
+            <p><strong>Bridge Pickup: </strong>@Model.instrumentbridgepu</p>
+            <p><strong>Features: </strong>@Model.instrumentfeatures</p>
+            <a href="@Model.instrumenturl" target="_blank">Manufacturer Website</a>
+        </div>
+    </div>
+</div>
+
+

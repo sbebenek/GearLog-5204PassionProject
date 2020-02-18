@@ -32,34 +32,42 @@
             <h4>Instruments:</h4>
             @if (Model.artist.Instruments.Count != 0)//if the list isn't empty
             {
-                <table class="table table-hover">
+                <small style="float:right">Add an instrument to this artist by going to the instrument page <a href="@Url.Action("Index", "Instruments")">here.</a></small>
+                <table class="table table-hover instrument-table">
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach (var instrument in Model.artist.Instruments)
-                    {
+                        @foreach (var instrument in Model.artist.Instruments)
+                        {
 
-                        <tr onclick="showDetails(@instrument.instrumentid);" style="cursor:pointer;">
-                            <td>
-                                @if (instrument.instrumentimage != "")
-                                {
-                                    <img class="thumbnail instrumentimage-sml" src="~/Content/Instruments/@instrument.instrumentimage" />
-                                }
-                                else
-                                {
-                                    <img class="thumbnail customimage-sml" src="~/Content/blank.png" />
-                                }
-                            </td>
-                            <td>@instrument.instrumentbrand @instrument.instrumenttitle</td>
-                        </tr>
-                    }
-
+                            <tr onclick="showDetails(@instrument.instrumentid);" style="cursor:pointer;">
+                                <td>
+                                    @if (instrument.instrumentimage != "")
+                                    {
+                                        <img class="thumbnail instrumentimage-sml" src="~/Content/Instruments/@instrument.instrumentimage" />
+                                    }
+                                    else
+                                    {
+                                        <img class="thumbnail customimage-sml" src="~/Content/blank.png" />
+                                    }
+                                </td>
+                                <td>@instrument.instrumentbrand @instrument.instrumenttitle</td>
+                                <td><a href="@Url.Action("Details", "Instruments", new { id = instrument.instrumentid})">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
+                <div id="output">
+                    <p class="details-text">Click on an instrument above to see its details.</p>
+                </div>
             }
             else
             {
                 <p class="list-empty">There are currently no instruments associated with this artist. <a href="@Url.Action("Create", "Instruments")">Add a new instrument?</a></p>
             }
-        <div id="output">
-        </div>
+
 
         </div>
     </div>

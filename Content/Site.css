@@ -56,6 +56,11 @@ textarea {
     width: 300px;
     object-fit: scale-down;
 }
+.instrumentimage-ml {
+    height: 400px;
+    width: 400px;
+    object-fit: scale-down;
+}
 .instrumentimage-xl {
     height: 450px;
     width: 450px;
@@ -110,4 +115,46 @@ textarea {
 .artist-inst-form {
     margin-top: 20px;
     margin-bottom: 40px;
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    position: relative;
+    animation-duration: 0.25s;
+}
+
+@keyframes fadeIn {
+    0% {
+        top:100px;
+        opacity: 0;
+    }
+
+    100% {
+        top:0;
+        opacity: 1;
+    }
+}
+/*REFERENCE - https://medium.com/@vembarrajan/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc */
+.instrument-table tbody {
+    display: block;
+    overflow: auto;
+    height: 200px;
+    width: 100%;
+}
+.instrument-table thead tr {
+    display: block;
+}
+.instrument-table thead, .instrument-table tbody tr, .instrument-table tfoot {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.details-text {
+    text-align:center;
+    margin-top: 20%;
+    margin-bottom:20%;
 }
