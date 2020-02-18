@@ -1,0 +1,53 @@
+﻿@model IEnumerable<_5204_PassionProject.Models.Instruments>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (!String.IsNullOrEmpty(Request["add"]) && Request["add"].Equals("True"))
+{
+    <div class="alert alert-success">Instrument successfully added.</div>
+}
+else if (!String.IsNullOrEmpty(Request["delete"]) && Request["delete"].Equals("True"))
+{
+    <div class="alert alert-success">Instrument successfully deleted.</div>
+}
+else if (!String.IsNullOrEmpty(Request["update"]) && Request["update"].Equals("True"))
+{
+    <div class="alert alert-success">Instrument successfully updated.</div>
+}
+
+<h2>Instruments</h2>
+
+<a class="btn btn-success float-right" style="clear:both" href="@Url.Action("Create")" role="button">Add Instrument</a>
+
+<div class="container">
+    <div class="row">
+
+        @{ int counter = 0;
+            foreach (var inst in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-5" style="max-width: 18rem; cursor: pointer;" onclick="window.location='@Url.Action("Details", new { id = inst.instrumentid})';">
+                        @if (inst.instrumentimage != "")
+                        {
+                            <img class="instrumentimage-card" src="~/Content/Instruments/@inst.instrumentimage" alt="Instrument Image">
+                        }
+                        else
+                        {
+                            <img class="customimage-card" src="~/Content/blank.png" alt="Default GearLog Image">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-text text-center">@inst.instrumentbrand @inst.instrumenttitle</h5>
+                        </div>
+                    </div>
+                </div>
+                if (counter % 4 == 0)
+                {
+                    <div class="w-100"></div>
+                }
+                counter++;
+            }
+        }
+    </div>
+</div>

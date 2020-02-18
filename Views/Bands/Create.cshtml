@@ -1,0 +1,21 @@
+﻿@model _5204_PassionProject.Models.Bands
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Band</h2>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="bandname">Band Name: </label>
+        <div>
+            <input type="text" name="bandname" id="bandname" class="form-control" />
+        </div>
+    </div>
+    
+    <a class="btn btn-secondary" href="@Url.Action("Index")" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Add Band" class="btn btn-primary" />
+</form>

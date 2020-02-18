@@ -1,0 +1,116 @@
+﻿@model _5204_PassionProject.Models.Instruments
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.instrumentbrand @Model.instrumenttitle</h2>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="instrumentid" id="instrumentid" value="@Model.instrumentid" />
+
+    <div class="form-group">
+        <label for="instrumentimage">Display Image: </label>
+        <div>
+            <input type="file" accept="image/*" name="instrumentimage" id="instrumentimage" class="form-control-file" onchange="loadFile(event)" />
+        </div>
+    </div>
+
+    <div>
+        @if (Model.instrumentimage != "")
+        {
+            <img id="output" class="img-rounded update-image instrumentimage-med" src="~/Content/Instruments/@Model.instrumentimage" />
+
+        }
+        else
+        {
+            <img id="output" class="img-rounded update-image instrumentimage-med" />
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="instrumentbrand">Brand: </label>
+        <div>
+            <input type="text" name="instrumentbrand" id="instrumentbrand" class="form-control" value="@Model.instrumentbrand" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumenttitle">Model: </label>
+        <div>
+            <input type="text" name="instrumenttitle" id="instrumenttitle" class="form-control" value="@Model.instrumenttitle" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumenttype">Instrument Type: </label>
+        <div>
+            <input type="text" name="instrumenttype" id="instrumenttype" class="form-control" value="@Model.instrumenttype" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentstrings">Number of Strings: </label>
+        <div>
+            <input type="number" name="instrumentstrings" id="instrumentsstrings" class="form-control" value="@Model.instrumentstrings" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbody">Body Wood: </label>
+        <div>
+            <input type="text" name="instrumentbody" id="instrumentbody" class="form-control" value="@Model.instrumentbody" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentneck">Neck Wood: </label>
+        <div>
+            <input type="text" name="instrumentneck" id="instrumentneck" class="form-control" value="@Model.instrumentneck" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentfretboard">Fretboard Wood: </label>
+        <div>
+            <input type="text" name="instrumentfretboard" id="instrumentfretboard" class="form-control" value="@Model.instrumentfretboard" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbridge">Bridge: </label>
+        <div>
+            <input type="text" name="instrumentbridge" id="instrumentbridge" class="form-control" value="@Model.instrumentbridge" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentneckpu">Neck Pickup: </label>
+        <div>
+            <input type="text" name="instrumentneckpu" id="instrumentneckpu" class="form-control" value="@Model.instrumentneckpu" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbridgepu">Bridge Pickup: </label>
+        <div>
+            <input type="text" name="instrumentbridgepu" id="instrumentbridgepu" class="form-control" value="@Model.instrumentbridgepu" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentfeatures">Features: </label>
+        <div>
+            <textarea rows="3" name="instrumentfeatures" id="instrumentfeatures" class="form-control">@Model.instrumentfeatures</textarea>
+        </div>
+    </div>
+    <div>
+        <label for="instrumenturl">Manufacturer URL: </label>
+        <div>
+            <input type="text" name="instrumenturl" id="instrumenturl" class="form-control" value="@Model.instrumenturl" />
+        </div>
+    </div>
+
+    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = Model.instrumentid })" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Update Instrument" class="btn btn-primary" />
+</form>
+
+<!--code below from stack overflow - https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded-->
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>

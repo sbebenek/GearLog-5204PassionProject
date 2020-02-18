@@ -1,0 +1,61 @@
+﻿@model _5204_PassionProject.Models.ViewModels.ListArtists
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (!String.IsNullOrEmpty(Request["add"]) && Request["add"].Equals("True"))
+{
+    <div class="alert alert-success">Artist successfully added.</div>
+}
+else if (!String.IsNullOrEmpty(Request["delete"]) && Request["delete"].Equals("True"))
+{
+    <div class="alert alert-success">Artist successfully deleted.</div>
+}
+else if (!String.IsNullOrEmpty(Request["update"]) && Request["update"].Equals("True"))
+{
+    <div class="alert alert-success">Artist successfully updated.</div>
+}
+
+<h2>Artists</h2>
+
+<a class="btn btn-success float-right" style="clear:both" href="@Url.Action("Create")" role="button">Add Artist</a>
+
+@foreach (var b in Model.bands)
+{
+    <h4>@b.bandname</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 25%"></th>
+                <th style="width: 75%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model.artists)
+            {
+                <tr onclick="window.location='@Url.Action("Details", new { id = a.artistid})';" style="cursor:pointer;">
+                    @if (a.bandid == b.bandid)
+                    {
+                        <td>
+                            @if (a.artistimage != "")
+                            {
+                                <img class="thumbnail customimage-sml" src="~/Content/Artists/@a.artistimage" />
+                            }
+                            else
+                            {
+                                <img class="thumbnail customimage-sml" src="~/Content/blank.png" />
+                            }
+                        </td>
+                        <td>@a.artistfname @a.artistlname</td>
+
+                    }
+                </tr>
+                
+            }
+        </tbody>
+
+    </table>
+}
+
+

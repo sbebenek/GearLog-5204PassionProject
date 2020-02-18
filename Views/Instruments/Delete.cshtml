@@ -1,0 +1,112 @@
+﻿@model _5204_PassionProject.Models.Instruments
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Instruments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentimage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentimage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumenttype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumenttype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentstrings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentstrings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentbody)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentbody)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentneck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentneck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentfretboard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentfretboard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentbridge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentbridge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentneckpu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentneckpu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentbridgepu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentbridgepu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumentfeatures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumentfeatures)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instrumenturl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instrumenturl)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

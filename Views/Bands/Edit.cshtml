@@ -1,0 +1,57 @@
+﻿@model _5204_PassionProject.Models.Bands
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.bandname</h2>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="bandid" id="bandid" value="@Model.bandid" />
+    <div class="form-group">
+        <label for="bandname">Band Name: </label>
+        <div>
+            <input type="text" name="bandname" id="bandname" class="form-control" value="@Model.bandname" />
+            @if (ViewBag.Message == 1)//if the band name field was submitted empty
+            {
+                <span class="text-danger">* Required field</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="artistimage">Display Image: </label>
+        <div>
+            <input type="file" accept="image/*" name="bandimage" id="bandimage" class="form-control-file" onchange="loadFile(event)" />
+            @if (ViewBag.Message == 2)//if the wrong file type was uploaded
+            {
+                <span class="text-danger">* Please upload valid filetype (JPEG, JPG, PNG, GIF)</span>
+            }
+        </div>
+    </div>
+
+    <div>
+        @if (Model.bandimage != "")
+        {
+            <img id="output" class="img-rounded update-image customimage-med" src="~/Content/Bands/@Model.bandimage" />
+
+        }
+        else
+        {
+            <img id="output" class="img-rounded update-image customimage-med" />
+        }
+    </div>
+
+    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = Model.bandid})" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Update Band" class="btn btn-primary" />
+</form>
+
+<!--code below from stack overflow - https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded-->
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>

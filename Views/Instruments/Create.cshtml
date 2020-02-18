@@ -1,0 +1,87 @@
+﻿@model _5204_PassionProject.Models.Instruments
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Create Instrument</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="instrumentbrand">Brand: </label>
+        <div>
+            <input type="text" name="instrumentbrand" id="instrumentbrand" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumenttitle">Model: </label>
+        <div>
+            <input type="text" name="instrumenttitle" id="instrumenttitle" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumenttype">Instrument Type: </label>
+        <div>
+            <input type="text" name="instrumenttype" id="instrumenttype" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentstrings">Number of Strings: </label>
+        <div>
+            <input type="number" name="instrumentstrings" id="instrumentsstrings" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbody">Body Wood: </label>
+        <div>
+            <input type="text" name="instrumentbody" id="instrumentbody" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentneck">Neck Wood: </label>
+        <div>
+            <input type="text" name="instrumentneck" id="instrumentneck" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentfretboard">Fretboard Wood: </label>
+        <div>
+            <input type="text" name="instrumentfretboard" id="instrumentfretboard" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbridge">Bridge: </label>
+        <div>
+            <input type="text" name="instrumentbridge" id="instrumentbridge" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentneckpu">Neck Pickup: </label>
+        <div>
+            <input type="text" name="instrumentneckpu" id="instrumentneckpu" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentbridgepu">Bridge Pickup: </label>
+        <div>
+            <input type="text" name="instrumentbridgepu" id="instrumentbridgepu" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="instrumentfeatures">Features: </label>
+        <div>
+            <textarea rows="3" name="instrumentfeatures" id="instrumentfeatures" class="form-control"></textarea>
+        </div>
+    </div>
+    <div>
+        <label for="instrumenturl">Manufacturer URL: </label>
+        <div>
+            <input type="text" name="instrumenturl" id="instrumenturl" class="form-control" />
+        </div>
+    </div>
+
+    <a class="btn btn-secondary" href="@Url.Action("Index")" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Add Instrument" class="btn btn-primary" />
+</form>

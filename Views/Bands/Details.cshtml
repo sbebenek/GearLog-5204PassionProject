@@ -1,0 +1,70 @@
+﻿@model _5204_PassionProject.Models.ViewModels.BandDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@if (Model.band.bandimage != "")
+{
+    <img class="img-rounded customimage-lrg" src="~/Content/Bands/@Model.band.bandimage" />
+}
+else
+{
+    <img class="thumbnail customimage-lrg" src="~/Content/blank.png" />
+}
+<h3>@Model.band.bandname</h3>
+
+<div class="float-right" style="margin-top: 10px">
+    <a class="btn btn-primary" href="@Url.Action("Index")" role="button">Go Back</a>
+    <a class="btn btn-warning" href="@Url.Action("Edit", new { id = Model.band.bandid})" role="button">Edit</a>
+    <a data-toggle="modal" data-target="#modal-@Model.band.bandid" class="btn btn-danger">Delete</a>
+</div>
+
+
+@if (Model.artists.Count != 0)//if the list isn't empty
+{
+    <h4>Artists in this band:</h4>
+    <table class="table table-hover">
+
+        @foreach (var artist in Model.artists)
+        {
+            <tr onclick="window.location='@Url.Action("Details", "Artists", new { id = artist.artistid})';" style="cursor:pointer;">
+                <td>
+                    @if (artist.artistimage != "")
+                    {
+                        <img class="thumbnail customimage-sml" src="~/Content/Artists/@artist.artistimage" />
+                    }
+                    else
+                    {
+                        <img class="thumbnail customimage-sml" src="~/Content/blank.png" />
+                    }
+                </td>
+                <td>@artist.artistfname @artist.artistlname</td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <p class="list-empty">There are currently no artists in this band. <a href="@Url.Action("Create", "Artists")">Add a new artist?</a></p>
+}
+
+
+<!-- Reference: below code from modal example on the bootstrap website -->
+<div class="modal fade" id="modal-@Model.band.bandid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Are you sure you want to delete <strong>@Model.band.bandname</strong>? This will also delete all artists in this band.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="window.location='@Url.Action("Delete", new { id = Model.band.bandid})';">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

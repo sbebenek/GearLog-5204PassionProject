@@ -1,0 +1,59 @@
+﻿@model IEnumerable<_5204_PassionProject.Models.Bands>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (!String.IsNullOrEmpty(Request["add"]) && Request["add"].Equals("True"))
+{
+    <div class="alert alert-success">Band successfully added.</div>
+}
+else if (!String.IsNullOrEmpty(Request["delete"]) && Request["delete"].Equals("True"))
+{
+    <div class="alert alert-success">Band successfully deleted.</div>
+}
+else if (!String.IsNullOrEmpty(Request["update"]) && Request["update"].Equals("True"))
+{
+    <div class="alert alert-success">Band successfully updated.</div>
+}
+
+<h2>Bands</h2>
+
+<a class="btn btn-success float-right" style="clear:both" href="@Url.Action("Create")" role="button">Add Artist</a>
+
+
+
+<div class="container">
+    <div class="row">
+
+        @{ int counter = 0;
+            foreach (var band in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-5" style="max-width: 18rem; cursor: pointer;" onclick="window.location='@Url.Action("Details", new { id = band.bandid})';">
+                        @if (band.bandimage != "")
+                        {
+                            <img class="customimage-card" src="~/Content/Bands/@band.bandimage" alt="Band Image">
+                        }
+                        else
+                        {
+                            <img class="customimage-card" src="~/Content/blank.png" alt="Default GearLog Image">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-text text-center">@band.bandname</h5>
+                        </div>
+                    </div>
+                </div>
+                if (counter % 4 == 0)
+                {
+                    <div class="w-100"></div>
+                }
+                counter++;
+            }
+        }
+    </div>
+</div>
+
+
+
+

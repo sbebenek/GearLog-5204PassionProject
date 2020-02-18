@@ -1,0 +1,45 @@
+﻿@model List<_5204_PassionProject.Models.Bands>
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Artist</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="artistfname">First Name: </label>
+        <div>
+            <input type="text" name="artistfname" id="artistfname" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="artistlname">Last Name: </label>
+        <div>
+            <input type="text" name="artistlname" id="artistlname" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="bandid">Band: </label>
+        <div>
+            <select id="bandid" name="bandid" class="form-control">
+
+                @{
+                    foreach (var band in Model)
+                    {
+                        <option value="@band.bandid">@band.bandname</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <a class="btn btn-secondary" href="@Url.Action("Index")" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Add Artist" class="btn btn-primary" />
+</form>
+
+
+
+
+
+<!--script render thingie was here-->

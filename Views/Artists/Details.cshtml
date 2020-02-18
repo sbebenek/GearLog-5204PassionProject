@@ -1,0 +1,99 @@
+﻿@model _5204_PassionProject.Models.ViewModels.ArtistDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+<h2>Details</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            @if (Model.artist.artistimage != "")
+            {
+                <img class="img-rounded customimage-lrg" src="~/Content/Artists/@Model.artist.artistimage" />
+            }
+            else
+            {
+                <img class="thumbnail customimage-lrg" src="~/Content/blank.png" />
+            }
+            <h3>@Model.artist.artistfname @Model.artist.artistlname</h3>
+            <a href="../../Bands/Details/@Model.band.bandid">@Model.band.bandname</a>
+            <br />
+            <div style="margin-top: 10px">
+                <a class="btn btn-primary" href="@Url.Action("Index")" role="button">Go Back</a>
+                <a class="btn btn-warning" href="@Url.Action("Edit", new { id = Model.artist.artistid})" role="button">Edit</a>
+                <a data-toggle="modal" data-target="#modal-@Model.artist.artistid" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <h4>Instruments:</h4>
+            @if (Model.artist.Instruments.Count != 0)//if the list isn't empty
+            {
+                <table class="table table-hover">
+
+                    @foreach (var instrument in Model.artist.Instruments)
+                    {
+
+                        <tr onclick="showDetails(@instrument.instrumentid);" style="cursor:pointer;">
+                            <td>
+                                @if (instrument.instrumentimage != "")
+                                {
+                                    <img class="thumbnail instrumentimage-sml" src="~/Content/Instruments/@instrument.instrumentimage" />
+                                }
+                                else
+                                {
+                                    <img class="thumbnail customimage-sml" src="~/Content/blank.png" />
+                                }
+                            </td>
+                            <td>@instrument.instrumentbrand @instrument.instrumenttitle</td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p class="list-empty">There are currently no instruments associated with this artist. <a href="@Url.Action("Create", "Instruments")">Add a new instrument?</a></p>
+            }
+        <div id="output">
+        </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Reference: below code from modal example on the bootstrap website -->
+<div class="modal fade" id="modal-@Model.artist.artistid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Are you sure you want to delete <strong>@Model.artist.artistfname @Model.artist.artistlname</strong>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="window.location='@Url.Action("Delete", new { id = Model.artist.artistid})';">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showDetails(id) {
+        $.ajax({
+            url: '@Url.Action("showDetails")',
+            type: 'GET',
+            cache: false,
+            data: { instrumentid: id }
+        }).done(function (result) {
+            $('#output').html(result);
+        });
+    }
+
+</script>
+
+

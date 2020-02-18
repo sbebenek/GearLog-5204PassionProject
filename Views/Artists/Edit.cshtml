@@ -1,0 +1,83 @@
+﻿@model _5204_PassionProject.Models.ViewModels.showArtist
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+<h2>Edit @Model.artist.artistfname @Model.artist.artistlname</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="artistid" id="artistid" value="@Model.artist.artistid" />
+
+    <div class="form-group">
+        <label for="artistfname">First Name: </label>
+        <div>
+            <input type="text" name="artistfname" id="artistfname" class="form-control" value="@Model.artist.artistfname" />
+        </div>
+    </div>
+    <div>
+        <label for="artistlname">Last Name: </label>
+        <div>
+            <input type="text" name="artistlname" id="artistlname" class="form-control" value="@Model.artist.artistlname" />
+        </div>
+    </div>
+    <div>
+        <label for="artistimage">Display Image: </label>
+        <div>
+            <input type="file" accept="image/*" name="artistimage" id="artistimage" class="form-control-file" onchange="loadFile(event)" />
+        </div>
+    </div>
+
+    <div>
+        @if (Model.artist.artistimage != "")
+        {
+            <img id="output" class="img-rounded update-image customimage-med" src="~/Content/Artists/@Model.artist.artistimage" />
+
+        }
+        else
+        {
+            <img id="output" class="img-rounded update-image customimage-med" />
+        }
+    </div>
+
+    <div>
+        <label for="bandid">Band: </label>
+        <div>
+            <select id="bandid" name="bandid" class="form-control">
+
+                @{
+                    foreach (var band in Model.allBands)
+                    {
+                        //set the record's current band to be selected
+                        if (band.bandid == Model.currentBand.bandid)
+                        {
+                            <option value="@band.bandid" selected>@band.bandname</option>
+                        }
+                        else
+                        {
+                            <option value="@band.bandid">@band.bandname</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = Model.artist.artistid})" role="button">Cancel</a>
+    <input type="submit" id="submit" value="Update Artist" class="btn btn-primary" />
+</form>
+
+<!--code below from stack overflow - https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded-->
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+

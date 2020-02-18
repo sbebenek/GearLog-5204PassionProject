@@ -1,0 +1,56 @@
+﻿@model _5204_PassionProject.Models.Artists
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Artists</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bands.bandname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bands.bandname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artistfname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artistfname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artistlname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artistlname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.artistimage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.artistimage)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
