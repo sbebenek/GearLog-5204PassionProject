@@ -276,6 +276,7 @@
     <Folder Include="Content\Artists\" />
     <Folder Include="Content\Bands\" />
     <Folder Include="Content\Instruments\" />
+    <Folder Include="ERDWireframes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

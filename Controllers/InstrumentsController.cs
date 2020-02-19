@@ -100,7 +100,7 @@ namespace _5204_PassionProject.Controllers
             string instrumentfeatures, string instrumenturl)
         {
             //add http:// to the website url if its not given (reference https://stackoverflow.com/questions/5289739/add-scheme-to-url-if-needed)
-            if (!instrumenturl.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            if (instrumenturl != "" && !instrumenturl.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
                 instrumenturl = new UriBuilder(instrumenturl).Uri.ToString();
             }
